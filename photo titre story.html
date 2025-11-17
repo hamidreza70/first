@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,39 @@
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap');
 
         /* تعریف فونت‌های محلی */
-        @font-face { font-family: 'B Titr'; src: local('B Titr'); font-weight: bold; }
-        @font-face { font-family: 'B Zar'; src: local('B Zar'); font-weight: bold; }
-        @font-face { font-family: 'B Yekan'; src: local('B Yekan'); }
-        @font-face { font-family: 'B Nazanin'; src: local('B Nazanin'); }
-        @font-face { font-family: 'DoranFaNum-ExtraBold'; src: local('DoranFaNum-ExtraBold'); font-weight: 800; }
-        @font-face { font-family: 'DoranFaNum-Regular'; src: local('DoranFaNum-Regular'); font-weight: 400; }
+        @font-face {
+            font-family: 'B Titr';
+            src: local('B Titr');
+            font-weight: bold;
+        }
+
+        @font-face {
+            font-family: 'B Zar';
+            src: local('B Zar');
+            font-weight: bold;
+        }
+
+        @font-face {
+            font-family: 'B Yekan';
+            src: local('B Yekan');
+        }
+
+        @font-face {
+            font-family: 'B Nazanin';
+            src: local('B Nazanin');
+        }
+
+        @font-face {
+            font-family: 'DoranFaNum-ExtraBold';
+            src: local('DoranFaNum-ExtraBold');
+            font-weight: 800;
+        }
+
+        @font-face {
+            font-family: 'DoranFaNum-Regular';
+            src: local('DoranFaNum-Regular');
+            font-weight: 400;
+        }
 
         :root {
             --bg-color: #f0f2f5;
@@ -39,7 +67,8 @@
             min-height: 100vh;
         }
 
-        header, footer {
+        header,
+        footer {
             background-color: var(--secondary-color);
             color: white;
             text-align: center;
@@ -47,10 +76,25 @@
             flex-shrink: 0;
         }
 
-        header h1 { margin: 0; font-size: 1.5rem; }
-        header p { margin: 0.5rem 0 0; opacity: 0.8; }
-        footer { font-size: 0.8rem; padding: 0.8rem; }
-        footer a { color: #a9c1e8; text-decoration: none; }
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        header p {
+            margin: 0.5rem 0 0;
+            opacity: 0.8;
+        }
+
+        footer {
+            font-size: 0.8rem;
+            padding: 0.8rem;
+        }
+
+        footer a {
+            color: #a9c1e8;
+            text-decoration: none;
+        }
 
         .app-container {
             display: flex;
@@ -76,18 +120,21 @@
             pointer-events: none;
             user-select: none;
         }
-        
+
         .preview-wrapper {
             width: 100%;
             max-width: 450px;
-            aspect-ratio: 1440 / 2736.74; 
+            aspect-ratio: 1440 / 2736.74;
             position: relative;
             filter: drop-shadow(0 10px 20px var(--shadow-color));
         }
 
         #render-target {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-color: var(--secondary-color);
             overflow: hidden;
             -webkit-clip-path: url(#cbi-frame-mask);
@@ -100,13 +147,15 @@
             text-align: center;
             z-index: 1;
         }
-        
+
         #start-message {
             padding: 15% 10%;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
-        #main-image-preview, #content-wrapper, #gradient-overlay {
+        #main-image-preview,
+        #content-wrapper,
+        #gradient-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -122,12 +171,20 @@
             transform-origin: center center;
             transition: transform 0.1s linear;
         }
-        
+
+        #main-image-preview-img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
         #gradient-overlay {
             z-index: 2;
             pointer-events: none;
         }
-        
+
         #content-wrapper {
             display: flex;
             flex-direction: column;
@@ -139,31 +196,37 @@
 
         #svg-overlay-preview {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 10;
             pointer-events: none;
-            overflow: visible; /* مهم: بخش‌های بیرون از کلیپ‌پت در پیش‌نمایش هم دیده شوند */
+            overflow: visible;
+            /* مهم: بخش‌های بیرون از کلیپ‌پت در پیش‌نمایش هم دیده شوند */
         }
 
         #svg-overlay-preview svg {
             position: absolute;
             transform-origin: center center;
         }
-        
+
         #text-container {
             width: 100%;
             text-align: right;
         }
 
-        #routitre-preview, #zirtitre-preview, #main-text-preview {
+        #routitre-preview,
+        #zirtitre-preview,
+        #main-text-preview {
             margin: 0;
             padding: 0;
             color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-        
+
         #routitre-separator {
             height: 2px;
             width: 100%;
@@ -172,13 +235,30 @@
             margin-bottom: 0.5em;
             display: none;
         }
-        
-        #routitre-preview { line-height: 1.3; }
-        #zirtitre-preview { line-height: 1.3; margin-top: 0.5em; }
-        #main-text-preview { line-height: 1.5; margin-top: 1em; }
-        
-        .quote-style::before { content: '«'; margin-left: 0.3em; }
-        .quote-style::after { content: '»'; margin-right: 0.3em; }
+
+        #routitre-preview {
+            line-height: 1.3;
+        }
+
+        #zirtitre-preview {
+            line-height: 1.3;
+            margin-top: 0.5em;
+        }
+
+        #main-text-preview {
+            line-height: 1.5;
+            margin-top: 1em;
+        }
+
+        .quote-style::before {
+            content: '«';
+            margin-left: 0.3em;
+        }
+
+        .quote-style::after {
+            content: '»';
+            margin-right: 0.3em;
+        }
 
         .controls-panel {
             flex: 1;
@@ -188,7 +268,7 @@
             padding: 1.5rem;
             overflow-y: auto;
             border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             border: 1px solid var(--border-color);
             flex-shrink: 0;
             height: fit-content;
@@ -196,8 +276,8 @@
         }
 
         hr.divider {
-            border: none; 
-            border-top: 1px solid var(--border-color); 
+            border: none;
+            border-top: 1px solid var(--border-color);
             margin: 1.5rem 0;
         }
 
@@ -207,9 +287,15 @@
             margin-bottom: 0;
             transition: background-color 0.2s;
         }
-        details:last-of-type { border-bottom: none; }
-        details[open] { background-color: #fdfdff; }
-        
+
+        details:last-of-type {
+            border-bottom: none;
+        }
+
+        details[open] {
+            background-color: #fdfdff;
+        }
+
         summary {
             font-weight: bold;
             padding: 1rem;
@@ -219,21 +305,46 @@
             align-items: center;
             font-size: 1.05rem;
         }
-        summary::-webkit-details-marker { display: none; }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
         summary::before {
             content: '◀';
             font-size: 0.8em;
             margin-left: 0.75rem;
             transition: transform 0.2s;
         }
-        details[open] summary::before { transform: rotate(-90deg); }
-        
-        .details-content { padding: 0.5rem 1rem 1.5rem 1rem; border-top: 1px solid var(--border-color); }
-        .control-item { margin-bottom: 1.25rem; }
-        .control-item:last-child { margin-bottom: 0; }
-        label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--label-color); }
-        
-        input, select, textarea {
+
+        details[open] summary::before {
+            transform: rotate(-90deg);
+        }
+
+        .details-content {
+            padding: 0.5rem 1rem 1.5rem 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .control-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .control-item:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--label-color);
+        }
+
+        input,
+        select,
+        textarea {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid var(--border-color);
@@ -243,46 +354,119 @@
             font-family: inherit;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
-        input:focus, select:focus, textarea:focus {
+
+        input:focus,
+        select:focus,
+        textarea:focus {
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px var(--focus-shadow);
         }
-        
-        .color-size-container { display: flex; gap: 1rem; align-items: flex-end; }
-        .color-size-container .control-item { flex: 1; margin-bottom: 0; }
-        input[type="color"] { width: 100%; height: 45px; padding: 4px; cursor: pointer; }
 
-        .checkbox-container { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
-        .checkbox-item { display: flex; align-items: center; gap: 0.5rem; }
-        .checkbox-item label { margin-bottom: 0; font-weight: normal; cursor: pointer; }
-        .checkbox-item input { width: auto; }
+        .color-size-container {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
 
-        .download-btn { width: 100%; padding: 1rem; background-color: var(--primary-color); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background-color 0.2s, transform 0.1s; margin-top: 1.5rem; }
-        .download-btn:hover:not(:disabled) { background-color: var(--secondary-color); }
-        .download-btn:active:not(:disabled) { transform: scale(0.98); }
-        .download-btn:disabled { background-color: #888; cursor: not-allowed; }
+        .color-size-container .control-item {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        input[type="color"] {
+            width: 100%;
+            height: 45px;
+            padding: 4px;
+            cursor: pointer;
+        }
+
+        .checkbox-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item label {
+            margin-bottom: 0;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .checkbox-item input {
+            width: auto;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 1.5rem;
+        }
+
+        .download-btn:hover:not(:disabled) {
+            background-color: var(--secondary-color);
+        }
+
+        .download-btn:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        .download-btn:disabled {
+            background-color: #888;
+            cursor: not-allowed;
+        }
 
         @media (max-width: 900px) {
-            .app-container { flex-direction: column-reverse; padding: 0; gap: 0; }
-            .controls-panel { 
-                max-width: 100%; 
-                border-radius: 12px 12px 0 0;
-                margin: 0; 
-                max-height: 50vh;
-                box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            .app-container {
+                flex-direction: column-reverse;
+                padding: 0;
+                gap: 0;
             }
-            .preview-panel { padding: 1rem; flex: 1; }
-            .preview-wrapper { max-width: 100%; width: 320px; margin: 0 auto; }
+
+            .controls-panel {
+                max-width: 100%;
+                border-radius: 12px 12px 0 0;
+                margin: 0;
+                max-height: 50vh;
+                box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .preview-panel {
+                padding: 1rem;
+                flex: 1;
+            }
+
+            .preview-wrapper {
+                max-width: 100%;
+                width: 320px;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <svg class="svg-defs" aria-hidden="true">
         <defs>
             <clipPath id="cbi-frame-mask" clipPathUnits="objectBoundingBox">
-                <path id="clipping-path-shape" transform="scale(0.0006944, 0.0003654)" d="M1358.36,2375.1c-.41,9.5-5.66,31.28-20.14,48.49-14.48,17.21-32.76,27.73-44.8,27.73h-518.04s-10.96.09-17.96-6.34c-6.63-6.08-55.83-76.75-75.42-105.04,0,0-.02-.02-.05-.06-.5-.61-4.62-5.55-8.55-8.07-4.19-2.69-8.33-3.45-8.79-3.47s-522.49,0-522.49,0c-34.97,0-63.33-28.35-63.33-63.33V319.29c0-34.97,28.36-63.33,63.33-63.33h1152.91c34.97,0,63.33,28.36,63.33,63.33v1945.72c0,3.01-.21,5.97-.62,8.87,0,0,1.02,91.71,.62,101.22Z"/>
+                <path id="clipping-path-shape" transform="scale(0.0006944, 0.0003654)"
+                    d="M1358.36,2375.1c-.41,9.5-5.66,31.28-20.14,48.49-14.48,17.21-32.76,27.73-44.8,27.73h-518.04s-10.96.09-17.96-6.34c-6.63-6.08-55.83-76.75-75.42-105.04,0,0-.02-.02-.05-.06-.5-.61-4.62-5.55-8.55-8.07-4.19-2.69-8.33-3.45-8.79-3.47s-522.49,0-522.49,0c-34.97,0-63.33-28.35-63.33-63.33V319.29c0-34.97,28.36-63.33,63.33-63.33h1152.91c34.97,0,63.33,28.36,63.33,63.33v1945.72c0,3.01-.21,5.97-.62,8.87,0,0,1.02,91.71,.62,101.22Z" />
             </clipPath>
         </defs>
     </svg>
@@ -297,7 +481,9 @@
             <div class="preview-wrapper">
                 <div id="render-target">
                     <p id="start-message">برای شروع، تصویر اصلی خود را انتخاب کنید</p>
-                    <div id="main-image-preview"></div>
+                    <div id="main-image-preview">
+                        <img id="main-image-preview-img" src="#" alt="">
+                    </div>
                     <div id="gradient-overlay"></div>
                     <div id="content-wrapper">
                         <div id="text-container">
@@ -317,117 +503,243 @@
             <details open>
                 <summary>● بارگذاری و تنظیمات تصویر</summary>
                 <div class="details-content">
-                    <div class="control-item"><label for="main-image-input">تصویر اصلی:</label><input type="file" id="main-image-input" accept="image/*"></div>
+                    <div class="control-item"><label for="main-image-input">تصویر اصلی:</label><input type="file"
+                            id="main-image-input" accept="image/*"></div>
                     <hr class="divider">
-                    <div class="control-item"><label for="image-zoom">بزرگنمایی: <span id="image-zoom-label">1.0</span>x</label><input type="range" id="image-zoom" min="0.2" max="5" value="1" step="0.1"></div>
-                    <div class="control-item"><label for="image-pan-x">جابجایی افقی: <span id="image-pan-x-label">0</span>%</label><input type="range" id="image-pan-x" min="-100" max="100" value="0" step="1"></div>
-                    <div class="control-item"><label for="image-pan-y">جابجایی عمودی: <span id="image-pan-y-label">-29</span>%</label><input type="range" id="image-pan-y" min="-100" max="100" value="-29" step="1"></div>
+                    <div class="control-item"><label for="image-zoom">بزرگنمایی: <span
+                                id="image-zoom-label">1.0</span>x</label><input type="range" id="image-zoom" min="0.2"
+                            max="5" value="1" step="0.1"></div>
+                    <div class="control-item"><label for="image-pan-x">جابجایی افقی: <span
+                                id="image-pan-x-label">0</span>%</label><input type="range" id="image-pan-x" min="-100"
+                            max="100" value="0" step="1"></div>
+                    <div class="control-item"><label for="image-pan-y">جابجایی عمودی: <span
+                                id="image-pan-y-label">-29</span>%</label><input type="range" id="image-pan-y"
+                            min="-100" max="100" value="-29" step="1"></div>
                 </div>
             </details>
 
             <details>
                 <summary>● لایه SVG</summary>
                 <div class="details-content">
-                    <div class="control-item"><label for="svg-overlay-input">فایل SVG:</label><input type="file" id="svg-overlay-input" accept=".svg"></div>
-                    <div class="control-item"><label for="svg-overlay-color">رنگ:</label><input type="color" id="svg-overlay-color" value="#ffffff"></div>
-                    <div class="control-item"><label for="svg-overlay-size">اندازه: <span id="svg-overlay-size-label">20</span>%</label><input type="range" id="svg-overlay-size" min="1" max="200" value="20" step="1"></div>
-                    <div class="control-item"><label for="svg-overlay-pos-x">موقعیت افقی (X): <span id="svg-overlay-pos-x-label">50</span>%</label><input type="range" id="svg-overlay-pos-x" min="0" max="100" value="50" step="1"></div>
-                    <div class="control-item"><label for="svg-overlay-pos-y">موقعیت عمودی (Y): <span id="svg-overlay-pos-y-label">50</span>%</label><input type="range" id="svg-overlay-pos-y" min="0" max="100" value="50" step="1"></div>
+                    <div class="control-item"><label for="svg-overlay-input">فایل SVG:</label><input type="file"
+                            id="svg-overlay-input" accept=".svg"></div>
+                    <div class="control-item"><label for="svg-overlay-color">رنگ:</label><input type="color"
+                            id="svg-overlay-color" value="#ffffff"></div>
+                    <div class="control-item"><label for="svg-overlay-size">اندازه: <span
+                                id="svg-overlay-size-label">20</span>%</label><input type="range" id="svg-overlay-size"
+                            min="1" max="200" value="20" step="1"></div>
+                    <div class="control-item"><label for="svg-overlay-pos-x">موقعیت افقی (X): <span
+                                id="svg-overlay-pos-x-label">50</span>%</label><input type="range"
+                            id="svg-overlay-pos-x" min="0" max="100" value="50" step="1"></div>
+                    <div class="control-item"><label for="svg-overlay-pos-y">موقعیت عمودی (Y): <span
+                                id="svg-overlay-pos-y-label">50</span>%</label><input type="range"
+                            id="svg-overlay-pos-y" min="0" max="100" value="50" step="1"></div>
                 </div>
             </details>
 
             <details open>
                 <summary>● تنظیمات کادربندی (ناحیه امن)</summary>
                 <div class="details-content">
-                    <div class="control-item"><label for="padding-top">فاصله از بالا: <span id="padding-top-label">5</span>%</label><input type="range" id="padding-top" min="0" max="40" value="5" step="0.5"></div>
-                    <div class="control-item"><label for="padding-right">فاصله از راست: <span id="padding-right-label">8</span>%</label><input type="range" id="padding-right" min="0" max="40" value="8" step="0.5"></div>
-                    <div class="control-item"><label for="padding-bottom">فاصله از پایین: <span id="padding-bottom-label">31</span>%</label><input type="range" id="padding-bottom" min="0" max="50" value="31" step="0.5"></div>
-                    <div class="control-item"><label for="padding-left">فاصله از چپ: <span id="padding-left-label">8</span>%</label><input type="range" id="padding-left" min="0" max="40" value="8" step="0.5"></div>
+                    <div class="control-item"><label for="padding-top">فاصله از بالا: <span
+                                id="padding-top-label">5</span>%</label><input type="range" id="padding-top" min="0"
+                            max="40" value="5" step="0.5"></div>
+                    <div class="control-item"><label for="padding-right">فاصله از راست: <span
+                                id="padding-right-label">8</span>%</label><input type="range" id="padding-right" min="0"
+                            max="40" value="8" step="0.5"></div>
+                    <div class="control-item"><label for="padding-bottom">فاصله از پایین: <span
+                                id="padding-bottom-label">31</span>%</label><input type="range" id="padding-bottom"
+                            min="0" max="50" value="31" step="0.5"></div>
+                    <div class="control-item"><label for="padding-left">فاصله از چپ: <span
+                                id="padding-left-label">8</span>%</label><input type="range" id="padding-left" min="0"
+                            max="40" value="8" step="0.5"></div>
                 </div>
             </details>
 
             <details>
                 <summary>● تنظیمات متن</summary>
                 <div class="details-content">
-                    <details open><summary>● روتیتر</summary><div class="details-content">
-                        <div class="control-item"><input type="text" id="routitre-text" value="دور زدن ممنوع! {اینجا} روابط عمومی است"></div>
-                        <div class="color-size-container">
-                            <div class="control-item"><label for="routitre-color">رنگ اصلی:</label><input type="color" id="routitre-color" value="#ffffff"></div>
-                            <div class="control-item"><label for="routitre-highlight-color">رنگ هایلایت:</label><input type="color" id="routitre-highlight-color" value="#ffc107"></div>
+                    <details open>
+                        <summary>● روتیتر</summary>
+                        <div class="details-content">
+                            <div class="control-item"><input type="text" id="routitre-text"
+                                    value="دور زدن ممنوع! {اینجا} روابط عمومی است"></div>
+                            <div class="color-size-container">
+                                <div class="control-item"><label for="routitre-color">رنگ اصلی:</label><input
+                                        type="color" id="routitre-color" value="#ffffff"></div>
+                                <div class="control-item"><label for="routitre-highlight-color">رنگ
+                                        هایلایت:</label><input type="color" id="routitre-highlight-color"
+                                        value="#ffc107"></div>
+                            </div>
+                            <div class="control-item"><label for="routitre-size">اندازه: <span
+                                        id="routitre-size-label">4.0</span>%</label><input type="range"
+                                    id="routitre-size" min="1" max="10" value="4" step="0.1"></div>
+                            <div class="control-item"><label for="routitre-line-height">فاصله خطوط: <span
+                                        id="routitre-lh-label">1.3</span></label><input type="range"
+                                    id="routitre-line-height" min="0.8" max="3" value="1.3" step="0.1"></div>
+                            <div class="control-item"><label for="routitre-font">فونت:</label><select
+                                    id="routitre-font">
+                                    <option>Vazirmatn</option>
+                                    <option>DoranFaNum-ExtraBold</option>
+                                    <option>DoranFaNum-Regular</option>
+                                    <option>B Titr</option>
+                                    <option>B Zar</option>
+                                    <option>B Yekan</option>
+                                    <option>B Nazanin</option>
+                                    <option>Tahoma</option>
+                                </select></div>
+                            <div class="checkbox-container">
+                                <div class="checkbox-item"><input type="checkbox" id="routitre-bold"><label
+                                        for="routitre-bold">بولد</label></div>
+                                <div class="checkbox-item"><input type="checkbox" id="routitre-quote"><label
+                                        for="رoutitre-quote">نقل قول</label></div>
+                            </div>
+                            <hr class="divider">
+                            <div class="control-item">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="routitre-sep-active"><label
+                                        for="routitre-sep-active">فعال‌سازی خط جداکننده</label>
+                                </div>
+                            </div>
+                            <div class="control-item"><label for="routitre-sep-color">رنگ خط:</label><input type="color"
+                                    id="routitre-sep-color" value="#ffffff"></div>
+                            <div class="control-item"><label for="routitre-sep-thickness">ضخامت خط: <span
+                                        id="routitre-sep-th-label">2</span>px</label><input type="range"
+                                    id="routitre-sep-thickness" min="1" max="20" value="2"></div>
+                            <div class="control-item"><label for="routitre-sep-width">عرض خط: <span
+                                        id="routitre-sep-w-label">100</span>%</label><input type="range"
+                                    id="routitre-sep-width" min="10" max="100" value="100"></div>
                         </div>
-                        <div class="control-item"><label for="routitre-size">اندازه: <span id="routitre-size-label">4.0</span>%</label><input type="range" id="routitre-size" min="1" max="10" value="4" step="0.1"></div>
-                        <div class="control-item"><label for="routitre-line-height">فاصله خطوط: <span id="routitre-lh-label">1.3</span></label><input type="range" id="routitre-line-height" min="0.8" max="3" value="1.3" step="0.1"></div>
-                        <div class="control-item"><label for="routitre-font">فونت:</label><select id="routitre-font"><option>Vazirmatn</option><option>DoranFaNum-ExtraBold</option><option>DoranFaNum-Regular</option><option>B Titr</option><option>B Zar</option><option>B Yekan</option><option>B Nazanin</option><option>Tahoma</option></select></div>
-                        <div class="checkbox-container">
-                            <div class="checkbox-item"><input type="checkbox" id="routitre-bold"><label for="routitre-bold">بولد</label></div>
-                            <div class="checkbox-item"><input type="checkbox" id="routitre-quote"><label for="رoutitre-quote">نقل قول</label></div>
-                        </div>
-                        <hr class="divider">
-                        <div class="control-item">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="routitre-sep-active"><label for="routitre-sep-active">فعال‌سازی خط جداکننده</label>
+                    </details>
+                    <details>
+                        <summary>● زیرتیتر</summary>
+                        <div class="details-content">
+                            <div class="control-item"><input type="text" id="zirtitre-text"
+                                    placeholder="متن زیرتیتر..."></div>
+                            <div class="color-size-container">
+                                <div class="control-item"><label for="zirtitre-color">رنگ اصلی:</label><input
+                                        type="color" id="zirtitre-color" value="#ffffff"></div>
+                                <div class="control-item"><label for="zirtitre-highlight-color">رنگ
+                                        هایلایت:</label><input type="color" id="zirtitre-highlight-color"
+                                        value="#ffc107"></div>
+                            </div>
+                            <div class="control-item"><label for="zirtitre-size">اندازه: <span
+                                        id="zirtitre-size-label">3.5</span>%</label><input type="range"
+                                    id="zirtitre-size" min="1" max="8" value="3.5" step="0.1"></div>
+                            <div class="control-item"><label for="zirtitre-line-height">فاصله خطوط: <span
+                                        id="zirtitre-lh-label">1.3</span></label><input type="range"
+                                    id="zirtitre-line-height" min="0.8" max="3" value="1.3" step="0.1"></div>
+                            <div class="control-item"><label for="zirtitre-font">فونت:</label><select
+                                    id="zirtitre-font">
+                                    <option>Vazirmatn</option>
+                                    <option>DoranFaNum-ExtraBold</option>
+                                    <option>DoranFaNum-Regular</option>
+                                    <option>B Titr</option>
+                                    <option>B Zar</option>
+                                    <option>B Yekan</option>
+                                    <option>B Nazanin</option>
+                                    <option>Tahoma</option>
+                                </select></div>
+                            <div class="checkbox-container">
+                                <div class="checkbox-item"><input type="checkbox" id="zirtitre-bold"><label
+                                        for="zirtitre-bold">بولد</label></div>
+                                <div class="checkbox-item"><input type="checkbox" id="zirtitre-quote"><label
+                                        for="zirtitre-quote">نقل قول</label></div>
                             </div>
                         </div>
-                        <div class="control-item"><label for="routitre-sep-color">رنگ خط:</label><input type="color" id="routitre-sep-color" value="#ffffff"></div>
-                        <div class="control-item"><label for="routitre-sep-thickness">ضخامت خط: <span id="routitre-sep-th-label">2</span>px</label><input type="range" id="routitre-sep-thickness" min="1" max="20" value="2"></div>
-                        <div class="control-item"><label for="routitre-sep-width">عرض خط: <span id="routitre-sep-w-label">100</span>%</label><input type="range" id="routitre-sep-width" min="10" max="100" value="100"></div>
-                    </div></details>
-                    <details><summary>● زیرتیتر</summary><div class="details-content">
-                        <div class="control-item"><input type="text" id="zirtitre-text" placeholder="متن زیرتیتر..."></div>
-                         <div class="color-size-container">
-                            <div class="control-item"><label for="zirtitre-color">رنگ اصلی:</label><input type="color" id="zirtitre-color" value="#ffffff"></div>
-                            <div class="control-item"><label for="zirtitre-highlight-color">رنگ هایلایت:</label><input type="color" id="zirtitre-highlight-color" value="#ffc107"></div>
+                    </details>
+                    <details>
+                        <summary>● متن اصلی</summary>
+                        <div class="details-content">
+                            <div class="control-item"><textarea id="main-text-text"
+                                    rows="4">این صفحه به منظور {ارتقای سطح تولیدات} فتوتیتر روابط عمومی در تاریخ 2 مهر 1404 طراحی و به طور داوطلبانه طی ده روز اجرا شد.</textarea>
+                            </div>
+                            <div class="color-size-container">
+                                <div class="control-item"><label for="main-text-color">رنگ اصلی:</label><input
+                                        type="color" id="main-text-color" value="#ffffff"></div>
+                                <div class="control-item"><label for="main-text-highlight-color">رنگ
+                                        هایلایت:</label><input type="color" id="main-text-highlight-color"
+                                        value="#ffc107"></div>
+                            </div>
+                            <div class="control-item"><label for="main-text-size">اندازه: <span
+                                        id="main-text-size-label">3.0</span>%</label><input type="range"
+                                    id="main-text-size" min="1" max="7" value="3" step="0.1"></div>
+                            <div class="control-item"><label for="main-text-line-height">فاصله خطوط: <span
+                                        id="main-text-lh-label">1.5</span></label><input type="range"
+                                    id="main-text-line-height" min="0.8" max="3" value="1.5" step="0.1"></div>
+                            <div class="control-item"><label for="main-text-font">فونت:</label><select
+                                    id="main-text-font">
+                                    <option>Vazirmatn</option>
+                                    <option>DoranFaNum-ExtraBold</option>
+                                    <option>DoranFaNum-Regular</option>
+                                    <option>B Titr</option>
+                                    <option>B Zar</option>
+                                    <option>B Yekan</option>
+                                    <option>B Nazanin</option>
+                                    <option>Tahoma</option>
+                                </select></div>
+                            <div class="checkbox-container">
+                                <div class="checkbox-item"><input type="checkbox" id="main-text-bold"><label
+                                        for="main-text-bold">بولد</label></div>
+                                <div class="checkbox-item"><input type="checkbox" id="main-text-justify"><label
+                                        for="main-text-justify">Justify</label></div>
+                            </div>
                         </div>
-                        <div class="control-item"><label for="zirtitre-size">اندازه: <span id="zirtitre-size-label">3.5</span>%</label><input type="range" id="zirtitre-size" min="1" max="8" value="3.5" step="0.1"></div>
-                        <div class="control-item"><label for="zirtitre-line-height">فاصله خطوط: <span id="zirtitre-lh-label">1.3</span></label><input type="range" id="zirtitre-line-height" min="0.8" max="3" value="1.3" step="0.1"></div>
-                        <div class="control-item"><label for="zirtitre-font">فونت:</label><select id="zirtitre-font"><option>Vazirmatn</option><option>DoranFaNum-ExtraBold</option><option>DoranFaNum-Regular</option><option>B Titr</option><option>B Zar</option><option>B Yekan</option><option>B Nazanin</option><option>Tahoma</option></select></div>
-                        <div class="checkbox-container">
-                            <div class="checkbox-item"><input type="checkbox" id="zirtitre-bold"><label for="zirtitre-bold">بولد</label></div>
-                            <div class="checkbox-item"><input type="checkbox" id="zirtitre-quote"><label for="zirtitre-quote">نقل قول</label></div>
-                        </div>
-                    </div></details>
-                    <details><summary>● متن اصلی</summary><div class="details-content">
-                        <div class="control-item"><textarea id="main-text-text" rows="4">این صفحه به منظور {ارتقای سطح تولیدات} فتوتیتر روابط عمومی در تاریخ 2 مهر 1404 طراحی و به طور داوطلبانه طی ده روز اجرا شد.</textarea></div>
-                         <div class="color-size-container">
-                            <div class="control-item"><label for="main-text-color">رنگ اصلی:</label><input type="color" id="main-text-color" value="#ffffff"></div>
-                            <div class="control-item"><label for="main-text-highlight-color">رنگ هایلایت:</label><input type="color" id="main-text-highlight-color" value="#ffc107"></div>
-                        </div>
-                        <div class="control-item"><label for="main-text-size">اندازه: <span id="main-text-size-label">3.0</span>%</label><input type="range" id="main-text-size" min="1" max="7" value="3" step="0.1"></div>
-                        <div class="control-item"><label for="main-text-line-height">فاصله خطوط: <span id="main-text-lh-label">1.5</span></label><input type="range" id="main-text-line-height" min="0.8" max="3" value="1.5" step="0.1"></div>
-                        <div class="control-item"><label for="main-text-font">فونت:</label><select id="main-text-font"><option>Vazirmatn</option><option>DoranFaNum-ExtraBold</option><option>DoranFaNum-Regular</option><option>B Titr</option><option>B Zar</option><option>B Yekan</option><option>B Nazanin</option><option>Tahoma</option></select></div>
-                        <div class="checkbox-container">
-                            <div class="checkbox-item"><input type="checkbox" id="main-text-bold"><label for="main-text-bold">بولد</label></div>
-                            <div class="checkbox-item"><input type="checkbox" id="main-text-justify"><label for="main-text-justify">Justify</label></div>
-                        </div>
-                    </div></details>
+                    </details>
                 </div>
             </details>
 
-            <details><summary>● تنظیمات عمومی</summary><div class="details-content">
-                <div class="control-item"><label for="content-position">موقعیت محتوا:</label><select id="content-position"><option value="bottom-right" selected>پایین راست</option><option value="bottom-left">پایین چپ</option><option value="top-right">بالا راست</option><option value="top-left">بالا چپ</option><option value="center">وسط</option></select></div>
-                <div class="control-item"><label for="content-opacity">شفافیت محتوا: <span id="opacity-label">100</span>%</label><input type="range" id="content-opacity" min="0" max="100" value="100"></div>
-            </div></details>
-
-            <details><summary>● گرادیانت لبه‌ها</summary><div class="details-content">
-                <div class="control-item">
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="gradient-active" checked><label for="gradient-active">فعال‌سازی گرادیانت</label>
-                    </div>
+            <details>
+                <summary>● تنظیمات عمومی</summary>
+                <div class="details-content">
+                    <div class="control-item"><label for="content-position">موقعیت محتوا:</label><select
+                            id="content-position">
+                            <option value="bottom-right" selected>پایین راست</option>
+                            <option value="bottom-left">پایین چپ</option>
+                            <option value="top-right">بالا راست</option>
+                            <option value="top-left">بالا چپ</option>
+                            <option value="center">وسط</option>
+                        </select></div>
+                    <div class="control-item"><label for="content-opacity">شفافیت محتوا: <span
+                                id="opacity-label">100</span>%</label><input type="range" id="content-opacity" min="0"
+                            max="100" value="100"></div>
                 </div>
-                <div class="control-item"><label for="gradient-color">رنگ پایه گرادیانت:</label><input type="color" id="gradient-color" value="#001b4a"></div>
-                <div class="control-item"><label for="gradient-opacity">شفافیت گرادیانت: <span id="gradient-opacity-label">100</span>%</label><input type="range" id="gradient-opacity" min="0" max="100" value="100"></div>
-                <hr class="divider">
-                <div class="control-item"><label for="gradient-top-start">شروع گرادیانت بالا (از لبه بالا): <span id="gradient-top-start-label">8</span>%</label><input type="range" id="gradient-top-start" min="0" max="100" value="8"></div>
-                <div class="control-item"><label for="gradient-top-end">پایان گرادیانت بالا (از لبه بالا): <span id="gradient-top-end-label">44</span>%</label><input type="range" id="gradient-top-end" min="0" max="100" value="44"></div>
-                <hr class="divider">
-                <div class="control-item"><label for="gradient-bottom-start">شروع گرادیانت پایین (از لبه پایین): <span id="gradient-bottom-start-label">29</span>%</label><input type="range" id="gradient-bottom-start" min="0" max="100" value="29"></div>
-                <div class="control-item"><label for="gradient-bottom-end">پایان گرادیانت پایین (از لبه پایین): <span id="gradient-bottom-end-label">47</span>%</label><input type="range" id="gradient-bottom-end" min="0" max="100" value="47"></div>
-            </div></details>
+            </details>
+
+            <details>
+                <summary>● گرادیانت لبه‌ها</summary>
+                <div class="details-content">
+                    <div class="control-item">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="gradient-active" checked><label for="gradient-active">فعال‌سازی
+                                گرادیانت</label>
+                        </div>
+                    </div>
+                    <div class="control-item"><label for="gradient-color">رنگ پایه گرادیانت:</label><input type="color"
+                            id="gradient-color" value="#001b4a"></div>
+                    <div class="control-item"><label for="gradient-opacity">شفافیت گرادیانت: <span
+                                id="gradient-opacity-label">100</span>%</label><input type="range" id="gradient-opacity"
+                            min="0" max="100" value="100"></div>
+                    <hr class="divider">
+                    <div class="control-item"><label for="gradient-top-start">شروع گرادیانت بالا (از لبه بالا): <span
+                                id="gradient-top-start-label">8</span>%</label><input type="range"
+                            id="gradient-top-start" min="0" max="100" value="8"></div>
+                    <div class="control-item"><label for="gradient-top-end">پایان گرادیانت بالا (از لبه بالا): <span
+                                id="gradient-top-end-label">44</span>%</label><input type="range" id="gradient-top-end"
+                            min="0" max="100" value="44"></div>
+                    <hr class="divider">
+                    <div class="control-item"><label for="gradient-bottom-start">شروع گرادیانت پایین (از لبه پایین):
+                            <span id="gradient-bottom-start-label">29</span>%</label><input type="range"
+                            id="gradient-bottom-start" min="0" max="100" value="29"></div>
+                    <div class="control-item"><label for="gradient-bottom-end">پایان گرادیانت پایین (از لبه پایین):
+                            <span id="gradient-bottom-end-label">47</span>%</label><input type="range"
+                            id="gradient-bottom-end" min="0" max="100" value="47"></div>
+                </div>
+            </details>
 
             <button id="download-btn" class="download-btn">دانلود تصویر نهایی (PNG)</button>
         </div>
     </div>
-    
+
     <footer>
         <p>هر خدمتی که کردم بی مزد بود و منت / یا رب مباد کس را مخدوم بی عنایت</p>
         <p>طراحی و کدنویسی: حمیدرضا پیمان | فتوتیتر v23.0 (منطق ترکیب نهایی)</p>
@@ -444,7 +756,7 @@
                 zirtitreText: document.getElementById('zirtitre-text'), zirtitreColor: document.getElementById('zirtitre-color'), zirtitreHighlightColor: document.getElementById('zirtitre-highlight-color'), zirtitreSize: document.getElementById('zirtitre-size'), zirtitreLineHeight: document.getElementById('zirtitre-line-height'), zirtitreBold: document.getElementById('zirtitre-bold'), zirtitreQuote: document.getElementById('zirtitre-quote'), zirtitreFont: document.getElementById('zirtitre-font'),
                 mainTextText: document.getElementById('main-text-text'), mainTextColor: document.getElementById('main-text-color'), mainTextHighlightColor: document.getElementById('main-text-highlight-color'), mainTextSize: document.getElementById('main-text-size'), mainTextLineHeight: document.getElementById('main-text-line-height'), mainTextBold: document.getElementById('main-text-bold'), mainTextJustify: document.getElementById('main-text-justify'), mainTextFont: document.getElementById('main-text-font'),
                 contentPosition: document.getElementById('content-position'), contentOpacity: document.getElementById('content-opacity'),
-                gradientActive: document.getElementById('gradient-active'), gradientColor: document.getElementById('gradient-color'), gradientOpacity: document.getElementById('gradient-opacity'), 
+                gradientActive: document.getElementById('gradient-active'), gradientColor: document.getElementById('gradient-color'), gradientOpacity: document.getElementById('gradient-opacity'),
                 gradientTopStart: document.getElementById('gradient-top-start'),
                 gradientTopEnd: document.getElementById('gradient-top-end'),
                 gradientBottomStart: document.getElementById('gradient-bottom-start'),
@@ -453,16 +765,17 @@
             };
             const previews = {
                 previewWrapper: document.querySelector('.preview-wrapper'),
-                renderTarget: document.getElementById('render-target'), 
-                startMessage: document.getElementById('start-message'), 
-                mainImage: document.getElementById('main-image-preview'), 
+                renderTarget: document.getElementById('render-target'),
+                startMessage: document.getElementById('start-message'),
+                mainImage: document.getElementById('main-image-preview'),
+                mainImageContent: document.getElementById('main-image-preview-img'),
                 svgOverlay: document.getElementById('svg-overlay-preview'),
                 gradientOverlay: document.getElementById('gradient-overlay'),
-                contentWrapper: document.getElementById('content-wrapper'), 
+                contentWrapper: document.getElementById('content-wrapper'),
                 textContainer: document.getElementById('text-container'),
-                routitre: document.getElementById('routitre-preview'), 
-                routitreSeparator: document.getElementById('routitre-separator'), 
-                zirtitre: document.getElementById('zirtitre-preview'), 
+                routitre: document.getElementById('routitre-preview'),
+                routitreSeparator: document.getElementById('routitre-separator'),
+                zirtitre: document.getElementById('zirtitre-preview'),
                 mainText: document.getElementById('main-text-preview'),
             };
             const labels = {
@@ -474,7 +787,7 @@
                 zirtitreSize: document.getElementById('zirtitre-size-label'), zirtitreLh: document.getElementById('zirtitre-lh-label'),
                 mainTextSize: document.getElementById('main-text-size-label'), mainTextLh: document.getElementById('main-text-lh-label'),
                 opacity: document.getElementById('opacity-label'),
-                gradientOpacity: document.getElementById('gradient-opacity-label'), 
+                gradientOpacity: document.getElementById('gradient-opacity-label'),
                 gradientTopStart: document.getElementById('gradient-top-start-label'),
                 gradientTopEnd: document.getElementById('gradient-top-end-label'),
                 gradientBottomStart: document.getElementById('gradient-bottom-start-label'),
@@ -483,13 +796,13 @@
 
             function hexToRgb(hex) {
                 let r = 0, g = 0, b = 0;
-                if (hex.length == 4) { r = parseInt(hex[1] + hex[1], 16); g = parseInt(hex[2] + hex[2], 16); b = parseInt(hex[3] + hex[3], 16); } 
+                if (hex.length == 4) { r = parseInt(hex[1] + hex[1], 16); g = parseInt(hex[2] + hex[2], 16); b = parseInt(hex[3] + hex[3], 16); }
                 else if (hex.length == 7) { r = parseInt(hex[1] + hex[2], 16); g = parseInt(hex[3] + hex[4], 16); b = parseInt(hex[5] + hex[6], 16); }
                 return { r, g, b };
             }
 
             function escapeHTML(str) {
-                return str.replace(/[&<>"']/g, function(match) {
+                return str.replace(/[&<>"']/g, function (match) {
                     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[match];
                 });
             }
@@ -520,7 +833,7 @@
                     svgElement.style.left = `${posX}%`;
                     svgElement.style.top = `${posY}%`;
                     //svgElement.style.transform = 'translate(-50%, -50%)';
-                    
+
                     // برای تغییر رنگ، به جای fill مستقیم، یک متغیر CSS تعریف می‌کنیم
                     // این روش اگر SVG داخلی رنگ‌ها را override کند، کارساز نیست. روش بهتر در تابع دانلود آمده.
                     svgElement.style.color = controls.svgOverlayColor.value;
@@ -542,9 +855,9 @@
                 previews.routitre.innerHTML = parseAndHighlightText(controls.routitreText.value, controls.routitreHighlightColor.value);
                 previews.zirtitre.innerHTML = parseAndHighlightText(controls.zirtitreText.value, controls.zirtitreHighlightColor.value);
                 previews.mainText.innerHTML = parseAndHighlightText(controls.mainTextText.value, controls.mainTextHighlightColor.value);
-                
+
                 previews.routitre.style.color = controls.routitreColor.value; previews.routitre.style.fontSize = `${containerWidth * (controls.routitreSize.value / 100)}px`; labels.routitreSize.innerText = controls.routitreSize.value; previews.routitre.style.lineHeight = controls.routitreLineHeight.value; labels.routitreLh.innerText = controls.routitreLineHeight.value; previews.routitre.style.fontWeight = controls.routitreBold.checked ? 'bold' : 'normal'; previews.routitre.classList.toggle('quote-style', controls.routitreQuote.checked); previews.routitre.style.fontFamily = `'${controls.routitreFont.value}', Vazirmatn, sans-serif`;
-                
+
                 if (controls.routitreSepActive.checked) {
                     previews.routitreSeparator.style.display = 'block';
                     previews.routitreSeparator.style.backgroundColor = controls.routitreSepColor.value;
@@ -558,7 +871,7 @@
 
                 previews.zirtitre.style.color = controls.zirtitreColor.value; previews.zirtitre.style.fontSize = `${containerWidth * (controls.zirtitreSize.value / 100)}px`; labels.zirtitreSize.innerText = controls.zirtitreSize.value; previews.zirtitre.style.lineHeight = controls.zirtitreLineHeight.value; labels.zirtitreLh.innerText = controls.zirtitreLineHeight.value; previews.zirtitre.style.fontWeight = controls.zirtitreBold.checked ? 'bold' : 'normal'; previews.zirtitre.classList.toggle('quote-style', controls.zirtitreQuote.checked); previews.zirtitre.style.fontFamily = `'${controls.zirtitreFont.value}', Vazirmatn, sans-serif`;
                 previews.mainText.style.color = controls.mainTextColor.value; previews.mainText.style.fontSize = `${containerWidth * (controls.mainTextSize.value / 100)}px`; labels.mainTextSize.innerText = controls.mainTextSize.value; previews.mainText.style.lineHeight = controls.mainTextLineHeight.value; labels.mainTextLh.innerText = controls.mainTextLineHeight.value; previews.mainText.style.fontWeight = controls.mainTextBold.checked ? 'bold' : 'normal'; previews.mainText.style.textAlign = controls.mainTextJustify.checked ? 'justify' : 'right'; previews.mainText.style.fontFamily = `'${controls.mainTextFont.value}', Vazirmatn, sans-serif`;
-                
+
                 // Update Content Position & Opacity
                 const position = controls.contentPosition.value; let justifyContent = 'flex-end', alignItems = 'flex-end', textAlign = 'right';
                 if (position === 'bottom-left') { alignItems = 'flex-start'; textAlign = 'left'; } else if (position === 'top-right') { justifyContent = 'flex-start'; } else if (position === 'top-left') { justifyContent = 'flex-start'; alignItems = 'flex-start'; textAlign = 'left'; } else if (position === 'center') { justifyContent = 'center'; alignItems = 'center'; textAlign = 'center'; }
@@ -569,12 +882,12 @@
                 if (controls.gradientActive.checked) {
                     const gradientOpacityValue = parseInt(controls.gradientOpacity.value, 10);
                     labels.gradientOpacity.innerText = gradientOpacityValue;
-                    
+
                     const alpha = gradientOpacityValue / 100;
                     const baseColor = hexToRgb(controls.gradientColor.value);
                     const gradientStartColor = `rgba(${baseColor.r}, ${baseColor.g}, ${baseColor.b}, ${alpha})`;
                     const gradientEndColor = `rgba(${baseColor.r}, ${baseColor.g}, ${baseColor.b}, 0)`;
-                    
+
                     const topStart = parseFloat(controls.gradientTopStart.value);
                     const topEnd = parseFloat(controls.gradientTopEnd.value);
                     const bottomStart = parseFloat(controls.gradientBottomStart.value);
@@ -584,7 +897,7 @@
                     labels.gradientTopEnd.innerText = topEnd;
                     labels.gradientBottomStart.innerText = bottomStart;
                     labels.gradientBottomEnd.innerText = bottomEnd;
-                    
+
                     previews.gradientOverlay.style.background = `
                         linear-gradient(to bottom, ${gradientStartColor} ${topStart}%, ${gradientEndColor} ${topEnd}%),
                         linear-gradient(to top, ${gradientStartColor} ${bottomStart}%, ${gradientEndColor} ${bottomEnd}%)
@@ -593,14 +906,14 @@
                     previews.gradientOverlay.style.background = 'none';
                 }
             }
-            
+
             controls.mainImageInput.addEventListener('change', (event) => {
                 const file = event.target.files[0];
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = (e) => {
-                        previews.mainImage.style.backgroundImage = `url('${e.target.result}')`;
-                        previews.startMessage.style.display = 'none'; 
+                        previews.mainImageContent.src = e.target.result;
+                        previews.startMessage.style.display = 'none';
                     };
                     reader.readAsDataURL(file);
                 }
@@ -615,9 +928,9 @@
                         // اطمینان از اینکه SVG جدید استایل‌های لازم را می‌گیرد
                         const newSvg = previews.svgOverlay.querySelector('svg');
                         if (newSvg) {
-                           // حذف ابعاد ذاتی SVG تا توسط CSS کنترل شود
-                           newSvg.removeAttribute('width');
-                           newSvg.removeAttribute('height');
+                            // حذف ابعاد ذاتی SVG تا توسط CSS کنترل شود
+                            newSvg.removeAttribute('width');
+                            newSvg.removeAttribute('height');
                         }
                         updatePreview();
                     };
@@ -639,7 +952,7 @@
                 return new Promise((resolve, reject) => {
                     try {
                         const clone = svgElement.cloneNode(true);
-                        
+
                         // اطمینان از وجود namespace
                         if (!clone.getAttribute('xmlns')) clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 
@@ -675,7 +988,7 @@
                     }
                 });
             }
-            
+
             controls.downloadBtn.addEventListener('click', async () => {
                 const originalButtonText = controls.downloadBtn.innerHTML;
                 controls.downloadBtn.disabled = true;
@@ -683,10 +996,10 @@
 
                 const scale = 3; // افزایش رزولوشن خروجی
                 const options = { scale, backgroundColor: null, useCORS: true, allowTaint: true, logging: false };
-                
+
                 const originalClipPath = previews.renderTarget.style.clipPath;
                 const originalWebkitClipPath = previews.renderTarget.style.webkitClipPath;
-                
+
                 try {
                     // --- مرحله ۱: رندر محتوای اصلی (تصویر، متن، گرادیانت) ---
                     controls.downloadBtn.innerHTML = 'مرحله ۱: رندر محتوای اصلی...';
@@ -711,7 +1024,7 @@
 
                         // تبدیل خود SVG به یک عنصر Image مجزا
                         svgImage = await svgElementToImage(svgEl);
-                        
+
                         // محاسبه موقعیت و ابعاد دقیق SVG روی canvas نهایی
                         svgDrawRect = {
                             x: (svgRect.left - wrapperRect.left) * scaleFactor,
@@ -737,7 +1050,7 @@
                     const scaleX = parseFloat(scaleValues[1]);
                     const scaleY = parseFloat(scaleValues[2]);
                     const path2D = new Path2D(pathData);
-                    
+
                     // context را مقیاس‌بندی می‌کنیم تا path با ابعاد بزرگ، روی canvas با ابعاد ما منطبق شود
                     destCtx.scale(destCanvas.width * scaleX, destCanvas.height * scaleY);
                     destCtx.clip(path2D); // ماسک را اعمال می‌کنیم
@@ -778,4 +1091,5 @@
         });
     </script>
 </body>
+
 </html>
